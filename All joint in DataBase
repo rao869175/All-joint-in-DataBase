@@ -1,0 +1,159 @@
+create database Student_Managment_System;
+use Student_Managment_System;
+create table student(
+id int primary key,
+f_name varchar(100),
+l_name varchar(100)
+);
+insert into student(id,f_name,l_name) values
+(1,"zain","javed"),
+(2,"hassan","abid"),
+(3,"ali","majeed");
+ select* from student;
+ 
+ create table teacher(
+ teach_id int primary key,
+ name varchar(100)
+ );
+ insert into teacher(teach_id,name ) values
+ (1,"Annas"),
+ (2,"khalid");
+ 
+  select* from teacher;
+  drop  table course;
+  create table course (
+  cou_id int primary key,
+  cou_name varchar(100)
+  );
+  insert into course(cou_id ,cou_name)values
+  (1,"OOP"),
+  (2,"C#");
+  
+
+    select* from course;
+    
+    
+    /* inner join check same id and put this column*/
+    /* id will be include */
+    select student.id,student.f_name,student.l_name,teacher.teach_id,teacher.name,course.cou_id,course.cou_name 
+    from student
+    inner join teacher on student.id=teacher.teach_id
+    inner join course on  student.id=course.cou_id;
+    /*inner join id not envolve*/
+      select student.f_name,student.l_name,teacher.name,course.cou_name 
+    from student
+    inner join teacher on student.id=teacher.teach_id
+    inner join course on  student.id=course.cou_id;
+    
+    /*left join left(coures)is same but on right only match column by using id with course.id give and also the other thing will include like id 3 is present in studen t in other 
+    column this have no id show the id 3 with its column and in course and teacher null value*/
+    
+    /*put the semicolon if if we previous join warna there is no need of this */
+    
+    
+    /* left  join me left value as it is and  right vali ko hum match karty he bu using id */
+	 select student.id,student.f_name,student.l_name,teacher.teach_id,teacher.name,course.cou_id,course.cou_name 
+    from student
+ left join teacher on student.id=teacher.teach_id
+left join course on  student.id=course.cou_id;
+
+    /* without id */
+       select student.f_name,student.l_name,teacher.name,course.cou_name
+    from student
+  left join teacher on student.id=teacher.teach_id
+left join course on  student.id=course.cou_id;
+
+/*Right join mean simpli right as it and left value who id is match with right just show this */
+	select student.id,student.f_name,student.l_name,teacher.teach_id,teacher.name,course.cou_id,course.cou_name 
+    from student
+ right join teacher on student.id=teacher.teach_id
+right join course on  student.id=course.cou_id;
+
+  /* without id */
+       select student.f_name,student.l_name,teacher.name,course.cou_name
+    from student
+right join teacher on student.id=teacher.teach_id
+right join course on  student.id=course.cou_id;
+
+
+/* union removing duplicate row   left join are value you show but on the right join have first two id match with left
+ join so we can give only one from this */
+
+ select student.id,student.f_name,student.l_name,teacher.teach_id,teacher.name,course.cou_id,course.cou_name
+    from student
+  left join teacher on student.id=teacher.teach_id
+left join course on  student.id=course.cou_id 
+ union 
+ 
+select student.id,student.f_name,student.l_name,teacher.teach_id,teacher.name,course.cou_id,course.cou_name
+from student
+right join teacher on student.id=teacher.teach_id
+right join course on  student.id=course.cou_id;
+ 
+ /* union all duplicate row will also include the duplicate row */
+ 
+  select student.id,student.f_name,student.l_name,teacher.teach_id,teacher.name,course.cou_id,course.cou_name
+    from student
+  left join teacher on student.id=teacher.teach_id
+left join course on  student.id=course.cou_id 
+ union all
+ 
+select student.id,student.f_name,student.l_name,teacher.teach_id,teacher.name,course.cou_id,course.cou_name
+from student
+right join teacher on student.id=teacher.teach_id
+right join course on  student.id=course.cou_id;
+
+/*cross join simple multiply your first table each row by second */
+create table mahek(
+id int primary key,
+name varchar(100)
+);
+insert into mahek(id,name)values
+ (1,"sajal"),
+  (2,"zainab");
+  
+  select* from mahek;
+create table sajal(
+id int primary key,
+f_name varchar(100)
+);
+insert into sajal(id,f_name)values
+ (5,"abid"),
+  (6,"raza");
+  select* from sajal;
+  
+/*cross join simple multiply your first table each row by second table means that m*n so when multiply with second so second column show */
+select mahek.id,mahek.name,sajal.id,sajal.f_name
+ from mahek
+ cross join sajal;
+
+
+/* self join means we check the relation in each table and thhis relation  table  will show */
+
+
+-- Create the 'employee' table with columns id, name, and manager_id
+CREATE TABLE employee (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    manager_id INT
+);
+
+-- Insert the data into the 'employee' table
+INSERT INTO employee (id, name, manager_id)
+VALUES
+    (1, 'Ali', NULL),
+    (2, 'Sara', 1),
+    (3, 'Hamza', 1),
+    (4, 'Zoya', 2);
+/* self join simple relation in a table */
+SELECT e.name AS Employee, m.name AS Manager
+FROM employee AS e
+JOIN employee AS m ON e.manager_id = m.id;
+
+
+
+
+
+
+
+    
