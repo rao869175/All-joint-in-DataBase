@@ -1,30 +1,41 @@
 create database Student_Managment_System;
+
 use Student_Managment_System;
+
 create table student(
 id int primary key,
 f_name varchar(100),
 l_name varchar(100)
 );
+
 insert into student(id,f_name,l_name) values
 (1,"zain","javed"),
 (2,"hassan","abid"),
 (3,"ali","majeed");
+
+
  select* from student;
  
  create table teacher(
  teach_id int primary key,
  name varchar(100)
  );
+
+
  insert into teacher(teach_id,name ) values
  (1,"Annas"),
  (2,"khalid");
  
   select* from teacher;
+
+
   drop  table course;
+
   create table course (
   cou_id int primary key,
   cou_name varchar(100)
   );
+
   insert into course(cou_id ,cou_name)values
   (1,"OOP"),
   (2,"C#");
@@ -39,6 +50,9 @@ insert into student(id,f_name,l_name) values
     from student
     inner join teacher on student.id=teacher.teach_id
     inner join course on  student.id=course.cou_id;
+
+
+
     /*inner join id not envolve*/
       select student.f_name,student.l_name,teacher.name,course.cou_name 
     from student
@@ -145,6 +159,8 @@ VALUES
     (2, 'Sara', 1),
     (3, 'Hamza', 1),
     (4, 'Zoya', 2);
+
+
 /* self join simple relation in a table */
 SELECT e.name AS Employee, m.name AS Manager
 FROM employee AS e
